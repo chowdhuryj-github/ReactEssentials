@@ -1,8 +1,9 @@
 
 import { useState } from 'react';
 import { TaskCard } from './TaskCard';
+import { BoxCard } from './BoxCard';
 
-export const TaskList = (props) => {
+export const TaskList = ({title, subtitle, info}) => {
 
       const [tasks, setTasks] = useState([
         {id: 527, name: "Record React Lectures", completed: true},
@@ -21,7 +22,7 @@ export const TaskList = (props) => {
   return (
 
     <>
-    <h1> Task List {props.title} {props.subtitle} </h1>
+    <h1> Task List {title} {subtitle} </h1>
     <ul>
 
         <button className='trigger' onClick={() => setShow(!show)}> Toggle </button>
@@ -29,6 +30,7 @@ export const TaskList = (props) => {
         { show && tasks.map((task) => (
             <TaskCard 
                 key={task.id}
+                info={info}
                 task={task}
                 handleDelete={handleDelete}
             />
@@ -36,6 +38,20 @@ export const TaskList = (props) => {
         ))}
         
     </ul>
+
+    <BoxCard result='success'>
+        <p className='title'>Success ipsum </p>
+        <p className='description'> Lorem </p>
+    </BoxCard>
+
+    <BoxCard result='warning'>
+        <p className='title'> Lorem ipsum dolor sit.</p>
+        <p className="description"> Lorem shit</p>
+        <p> Lorem Lorem Lorem</p>
+    </BoxCard>
+
+
+
     </>
   )
 }
